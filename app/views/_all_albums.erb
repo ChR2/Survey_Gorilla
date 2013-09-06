@@ -1,9 +1,0 @@
-<div id='allalbums'>
-<% @albums.each do |album| %>
-      <tr>
-        <a href="/albums/<%= album.id %>"><%= album.name %></a> by: <%=album.user.name %><br>
-      </tr>
-    <% end %>
-</div>
-
-
