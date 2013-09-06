@@ -1,0 +1,25 @@
+<%= erb :_header %>
+<div id='profile'> 
+  <h1><%= current_user.name.capitalize %>s Profile</h1>
+
+
+   
+  <form action="/albums/1" method='POST' enctype="multipart/form-data">
+    <input type="file" name="image"><br>
+    <input type="submit" value="Upload">
+  </form>
+
+  <br>
+  <br>
+  <form action='/createalbum' method='POST'>
+  	<label>Album Name: <input type="text" name="album[name]" placeholder="Album Name" required></label> <input type="submit" value="Create Album">
+  </form>
+
+  <br>
+  <br>
+
+  <h1>All My Albums</h1>
+  <div id='albumsall'>
+    <%= erb :_all_albums %>
+  </div>
+</div>

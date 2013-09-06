@@ -1,0 +1,16 @@
+<%= erb :_header %>
+<h1>All Pictures</h1>
+
+
+<TABLE>
+  <tbody class = "pictures">
+    <% @pictures.each do |picture| %>
+      <tr>
+        <td>
+          <br><a href="/albums/<%= picture.album_id %>/<%=picture.id%>"><img src="<%= picture.file %>"width="150" height="150"> </a> 
+      </tr>
+    <% end %>
+  </tbody>
+</TABLE>
+
+
