@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   has_many :albums
   validates :name, presence: true, uniqueness: true
-  validates :password, presence: true
+  validates :password_digest, presence: true
 
   def self.authenticate(name, secret)
     user = find_by_name(name)
