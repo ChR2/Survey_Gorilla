@@ -1,13 +1,13 @@
 <ul id="header">
-	<li><a href="/">Survey Gorilla</a></li>
+	<li><a href="/">Survey Gorilla</a></li>	
 	<li><a href="/allsurveys">All Surveys</a></li>
 	<% if logged_in? %>
 	<li><a href="/logout">Create Survey</a></li>
 	<li><a href="/logout">Take Survey</a></li>
 	<li><a href="/logout">Logout</a></li>
-	<li><a href="/user/profile"><%=current_user.name.capitalize %></a></li>
+	<li><a href="/user/profile"><%=current_user.username.capitalize %></a></li>
 	<% else %>
 	<li><a href="/login">Login</a></li>
-	<li><a href="/createuser">Sign Up</a></li>
+	<li><a href="/create_user">Sign Up</a></li>
 	<% end %>
 </ul>
