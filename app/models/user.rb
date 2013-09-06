@@ -3,7 +3,7 @@ require 'bcrypt'
 class User < ActiveRecord::Base
   include BCrypt
 
-  has_many :albums
+
   validates :name, presence: true, uniqueness: true
   validates :password_digest, presence: true
 
