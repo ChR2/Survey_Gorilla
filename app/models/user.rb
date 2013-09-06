@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   has_many :surveys
   validates :username, presence: true
   validates :email, presence: true
+  validates :name, presence: true, uniqueness: true
+  validates :password_digest, presence: true
+
 
   def self.authenticate(name, secret)
     user = find_by_name(name)

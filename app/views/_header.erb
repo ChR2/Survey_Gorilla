@@ -1,8 +1,9 @@
 <ul id="header">
-	<li><a href="/">Fake Flickr Home</a></li>
-	<li><a href="/albums">All Albums</a></li>
-	<li><a href="/pictures">All Pictures</a></li>
+	<li><a href="/">Survey Gorilla</a></li>
+	<li><a href="/allsurveys">All Surveys</a></li>
 	<% if logged_in? %>
+	<li><a href="/logout">Create Survey</a></li>
+	<li><a href="/logout">Take Survey</a></li>
 	<li><a href="/logout">Logout</a></li>
 	<li><a href="/user/profile"><%=current_user.name.capitalize %></a></li>
 	<% else %>
