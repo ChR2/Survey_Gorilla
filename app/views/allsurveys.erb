@@ -1,1 +1,10 @@
 <%= erb :_header %>
+<div id="mainpage">
+<h1>Take a Survey</h1>
+  <ul class="survey_list">
+<% @all_surveys.each do |survey| %> 
+  <li><a class="survey_links" href="/take_survey/<%=survey.id%>"><%=survey.name%></a></li>
+<% end %>
+  </ul>
+</div>
+

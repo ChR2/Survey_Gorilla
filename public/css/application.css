@@ -30,6 +30,16 @@ body {
 	display:inline;
 	padding: 20px;
 }
+ 
+#mainpage h1,h2 {
+  text-align: center;
+  padding-top: 50px;
+  color: #4d4d4d;
+}
+
+#mainpage h2 {
+  padding-top: 0px;
+}
 
 #header a{
 	color:white;
@@ -37,4 +47,55 @@ body {
 
 }
 
+.mission {
+  margin-right: 5%;
+  margin-left: 5%;
+}
 
+footer {
+  position: fixed;
+  bottom: 0px;
+  background-color: black;
+  color: white;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+footer p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+div.container {
+  margin-top: 100px;
+  border: 5px solid black;
+}
+
+input {
+  padding: 5px;
+  border: 2px solid black;
+}
+
+ul.survey_list {
+  padding-left: 0px;
+}
+
+li {
+  text-align: center;
+  list-style-type: none;
+  line-height: 30px;
+}
+
+#error {
+  color:red;
+}
+
+a.survey_links {
+  text-decoration: none;
+  font-size: 120%;
+  color: black;
+}
+
+a.survey_links:hover {
+  color: orange;
+}

@@ -1,9 +1,13 @@
 <%= erb :_header %>
-
+<div class="container">
 <h1>Login</h1>
 <form action='/login' method ="POST">
-  <label>Username: <input type="text" name="user[name]" placeholder="username" required></label><br>
-  <label>Password: <input type="password" name="user[password]" placeholder="password" required></label><br>
+  <input type="text" name="user[username]" placeholder="username" required><br><br>
+  <input type="password" name="user[password]" placeholder="password" required><br><br>
   <input type="submit" value="Login">
 </form>
+<% if @error%>
+  <p id="error"><%= @error %></p>
+<% end %>
+</div>
 
