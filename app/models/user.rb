@@ -1,11 +1,13 @@
-require 'bcrypt'
+# require 'bcrypt'
 
 class User < ActiveRecord::Base
   include BCrypt
+  has_secure_password
 
-  has_many :albums
-  validates :name, presence: true, uniqueness: true
-  validates :password_digest, presence: true
+  has_many :responses
+  has_many :surveys
+  validates :username, presence: true
+  validates :email, presence: true
 
   def self.authenticate(name, secret)
     user = find_by_name(name)

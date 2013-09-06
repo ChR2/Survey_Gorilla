@@ -16,7 +16,7 @@ gem 'activerecord'
 gem 'rake'
 
 gem 'shotgun'
-gem 'bcrypt-ruby'
+gem 'bcrypt-ruby', '~> 3.0.0'
 gem "mini_magick"
 gem 'carrierwave'
 
