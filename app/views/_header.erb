@@ -1,13 +1,23 @@
-<ul id="header">
-	<li><a href="/">Survey Dictator</a></li>	
-	<li><a href="/allsurveys">All Surveys</a></li>
-	<% if logged_in? %>
-	<li><a href="/logout">Create Survey</a></li>
-	<li><a href="/logout">Take Survey</a></li>
-	<li><a href="/logout">Logout</a></li>
-	<li><a href="/user/profile"><%=current_user.username.capitalize %></a></li>
-	<% else %>
-	<li><a href="/login">Login</a></li>
-	<li><a href="/create_user">Sign Up</a></li>
-	<% end %>
+	<a href="/">Survey Dictator</a>
+<ul>  
+    <% if logged_in? %>
+    <li><a class="options" href="#">Create Survey</a>
+      <div class='dropdown'>
+        <ul class="submenu">
+          <li><a  href="/createsurvey">Radio Buttons</a></li>
+          <li><a  href="#">Multiple Choice</a></li>
+          <li><a  href="#">Text Answers</a></li>
+          <li><a  href="#">Other</a></li>
+        </ul>
+      </div>  
+    </li>
+    <li><a href="/allsurveys">Take Survey</a></li>
+    <li><a href="/logout">Logout</a></li>
+    <li><a href="/user/profile"><%=current_user.username.capitalize %></a></li>
+	  <% else %>
+	    <li><a href="/allsurveys">All Surveys</a></li>
+	    <li><a href="/login">Login</a></li>
+	    <li><a  href="/create_user">Sign Up</a></li>
+	  <% end %>
 </ul>
+

@@ -1,25 +1,47 @@
-<%= erb :_header %>
-<div id='profile'> 
-  <h1><%= current_user.name.capitalize %>s Profile</h1>
+
+<div id='profile'>
+  <h1><%=current_user.username.capitalize%>'s Profile </h1>
+  <% if Photo.find_by_user_id(current_user.id) != nil %>
+    <img src="<%=Photo.find_by_user_id(current_user.id).file %>"> 
+  <% end %>
+  <h3><%=current_user.email%></h3>
+  <h3>Account Created: <%=((Time.now - current_user.created_at) / 86400).floor%> days ago</h3>
 
 
-   
-  <form action="/albums/1" method='POST' enctype="multipart/form-data">
-    <input type="file" name="image"><br>
-    <input type="submit" value="Upload">
+
+<TABLE id="user_completed">
+  <tr>
+  <th>Completed Surveys</th>
+  <tbody class = "comment">
+    <% @completed_surveys.each do |survey| %>
+      <tr>
+        <td><a href="/review-survey/<%=survey.id %>"><%=survey.name %></a>
+      </tr>
+    <% end %>
+  </tbody>
+</TABLE>
+
+
+
+<TABLE id='user_created'>
+  <tr>
+    <th>Created Surveys</th>
+  <tbody class = "comment">
+    <% @created_surveys.each do |survey| %>
+      <tr>
+        <td><a href="/<%=survey.id %>"><%=survey.name %></a>
+      </tr>
+    <% end %>
+  </tbody>
+</TABLE>
+
+<br><br>
+<% if Photo.find_by_user_id(current_user.id) == nil %>
+  <form action='/upload' method='POST' enctype="multipart/form-data">
+    <input type='file' name='image' required >
+    <input type='submit' value='upload'>
   </form>
+<% end %>
 
-  <br>
-  <br>
-  <form action='/createalbum' method='POST'>
-  	<label>Album Name: <input type="text" name="album[name]" placeholder="Album Name" required></label> <input type="submit" value="Create Album">
-  </form>
 
-  <br>
-  <br>
-
-  <h1>All My Albums</h1>
-  <div id='albumsall'>
-    <%= erb :_all_albums %>
-  </div>
 </div>

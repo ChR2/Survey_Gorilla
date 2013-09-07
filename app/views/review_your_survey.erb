@@ -1,0 +1,18 @@
+<section id='review_survey'>
+  <h1>
+    <%=@survey.name.capitalize%>
+  </h1>  
+  <% @questions.each do |question| %>
+    <h2>Question: <%= question.question_text %></h2> 
+    <% choices = question.choices %>
+    <% choices.each do |choice| %>
+        <% response = Response.find_by_choice_id_and_survey_id_and_user_id(choice.id,@survey.id,current_user.id) %>
+        <% if response != nil %>
+         <p> Your submitted answer: <%= choice.choice_text %>! </p>
+        <%end%>  
+    <% end %> 
+  <% end %>
+</section>
+
+
+

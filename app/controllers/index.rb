@@ -1,3 +1,4 @@
+#get+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 get '/' do
   erb :index
 end
@@ -26,10 +27,6 @@ get '/logout' do
   redirect '/'
 end
 
-get '/signup' do 
-
-end
-
 get '/createsurvey' do 
   erb :create_survey
 end
@@ -42,12 +39,39 @@ get '/answer/new' do
   erb :_answer, layout: false
 end
 
+get '/user/profile' do
+  if logged_in?
+    @completed_surveys = completed_surveys
+    @created_surveys = current_user.surveys
+    erb :profile
+  else
+    redirect('/login')
+  end
+end
+
+get '/results/:id' do 
+  erb :view_results
+end
+
+get '/review-survey/:id' do
+  @survey = Survey.find(params[:id])
+  @questions = @survey.questions
+   erb :review_your_survey
+end
+
+get '/treat' do 
+  erb :treat, layout: false
+end
+
+
+#POST+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 post '/login' do
   @user = User.find_by_username(params[:user][:username])
 
   if @user && @user.authenticate(params[:user][:password])
     session[:user_id] = @user.id
-    redirect to '/allsurveys'
+    redirect('/user/profile')
   else
     @error = "Whatchu talkin bout, Willis?"
     erb :login
@@ -59,20 +83,23 @@ post '/create_user' do
 
   if @user.save
     session[:user_id] = @user.id
-    redirect to '/allsurveys'
+    redirect to '/user/profile'
   else
     @error = "You messed up, sucka!"end
     erb :create_user
-  
-end
+  end
 
 post '/take_survey/:survey_id' do
-  @survey_id = params[:survey_id]
-  questions = Survey.find(@survey_id).questions
-  questions.each do |question|
-    Response.create(:user_id => current_user.id, :choice_id => params[question.id.to_s.to_sym])
+  if logged_in?
+    @survey_id = params[:survey_id]
+    questions = Survey.find(@survey_id).questions
+    questions.each do |question|
+      Response.create(:user_id => current_user.id,:survey_id => question.survey_id ,:choice_id => params[question.id.to_s.to_sym])
+    end
+    redirect to '/allsurveys'
+  else
+    redirect to '/login'
   end
-  redirect to '/allsurveys'
 end
 
 post '/create_survey' do 
@@ -93,6 +120,13 @@ questions.each do |task|
   end
 end
 
-redirect to "/"
+redirect to "/user/profile"
 
+end
+
+post '/upload' do
+  photo = Photo.create(name: "profile",user_id: current_user.id)
+  photo.file = params[:image]
+  photo.save
+  redirect('/user/profile')
 end
