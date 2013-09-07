@@ -56,7 +56,7 @@ post '/take_survey/:survey_id' do
   @survey_id = params[:survey_id]
   questions = Survey.find(@survey_id).questions
   questions.each do |question|
-    Response.create(:user_id => current_user.id, :choice_id => params[question.id.to_sym])
+    Response.create(:user_id => current_user.id, :choice_id => params[question.id.to_s.to_sym])
   end
   redirect to '/allsurveys'
 end
