@@ -64,6 +64,24 @@ post '/create_user' do
   end
 end
 
-post '/take_survey/:survey_id' do
 
+post '/create_survey' do 
+@survey = Survey.create(name: params[:surveyname])
+current_user.surveys << @survey
+questions = params[:questions]
+@name = ''
+
+questions.each do |task|
+  if task.class == String                                                                       
+    @name = Question.create(question_text: task)
+    @survey.questions << @name
+  else
+  answers = task["answers"]
+  answers.each do |answer|
+    @name.choices << Choice.create(choice_text: answer)
+  end 
+  end
+end
+
+redirect to "/"
 end

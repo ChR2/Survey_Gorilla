@@ -2,8 +2,7 @@ $(document).ready(function() {
 //adds questions
 $('#addVar').on('click', function(){
   $.get('/question/new', function(response){
-    
-    $('#question').append(response);
+    $('#question #addVar').before(response);
   });
 });
 
@@ -23,9 +22,6 @@ $('#question').on('click','#addAns',function(){
 //removes answers
 $('#question').on('click','.removeAns',function(){
   $(this).parent().remove();
-  if ($('.answer').length < 2){
-    $('.removeAns').hide();
-  }
 });
 
 });
