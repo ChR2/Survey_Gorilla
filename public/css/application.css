@@ -7,6 +7,202 @@
 th {
   text-align: left;
 }
+/*These are eugene's and I will move them later BEGIN*/
+ #user_completed {
+  position: relative;
+  left:75%;
+  bottom: 35px;
+ }
+
+ #user_created {
+  position: relative;
+  bottom:60px;
+  left:15px; 
+ }
+
+ #user_completed {
+  color:green;
+ }
+
+header{
+  padding:10px 5px 0;
+  background-color: black;
+  height:65px;
+  position:fixed;
+  top:0px; 
+  width:100%;
+}
+header > ul { 
+ float:right;
+}
+.centerwrap{
+  display:table;
+  margin: 0 auto;
+  text-align: center;
+}
+
+header > a {
+  font-weight: bold;
+  font-size: 40px;
+  text-decoration: none;
+  color: white;
+}
+header > a:hover {
+  color:#D80000 ;
+}
+
+header > ul > li > a {
+  color:white;
+  text-decoration: none;
+}
+
+header > ul > li {
+  margin-right: 25px;
+}
+
+header > ul li {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+}
+
+
+header > ul li > a:hover {
+  color:#D80000 ;
+}
+
+header > ul li ul {
+  margin-top:-30px; 
+  padding: 0;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 102px;
+  box-shadow: none;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transiton: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  -transition: opacity 0.2s;
+}
+
+header > ul li ul li { 
+  border-bottom: 2px dotted black;
+  padding-bottom:3px;
+  margin-bottom:15px;
+  font-size: 75%;
+  display: block; 
+}
+
+header > ul li ul li > a { 
+  color:black;
+  text-decoration: none;
+
+}
+
+header > ul li ul li a:hover { 
+  color:#D80000;
+}
+header > ul li:hover ul {
+  padding:20px 0 20px;
+  display: inline-block;
+  opacity: 1;
+  background-color: #D0D0D0;
+  border: 1px solid black;
+  border-radius: 3px;
+  visibility: visible;
+  z-index:2000;
+}
+
+#profile {
+  text-align: center;
+}
+
+#review_survey h1 {
+  text-align: center;
+  border: 2px dotted black;
+}
+
+
+#question {
+  margin:80px 0 25px;
+}
+
+.question_section img,
+#answer  img {
+  position: relative;
+  top:6px;
+}
+
+
+.question_section > input[type="text"],
+#answer > input[type="text"]{
+    clear: both;
+    float: left;
+    display: inline-block;
+    border: 1px solid #ccc;
+    background: #ebebeb;
+    margin: 6px 0;
+    padding: 4px 10px;
+    height: 34px;
+    outline: 0;
+    color: #34495e;
+    font-size: 14px;
+}
+  .question_section > input[type="text"],
+  #answer > input[type="text"]{
+     width: 300px;
+  }
+.treat {
+  color: white;
+  text-decoration: none;
+}
+
+.question_section > input[type="text"]:not([value*=" "]):active,
+.question_section > input[type="text"]:not([value*=" "]):focus,
+#answer > input[type=text]:not([value*=" "]):active,
+#answer > input[type=text]:not([value*=" "]):focus {
+    /*box-shadow*/
+    -webkit-box-shadow: inset 8px 0px 0  #515255;
+    -moz-box-shadow: inset 8px 0px 0  #515255;
+    box-shadow: inset 8px 0px 0  #515255;
+    padding-left: :;
+    : x;
+}
+
+#answer > input[type=submit] {
+    background: #27ae60;
+    color: #ecf0f1;
+    border: 0;
+    border-bottom: 2px solid #2ecc71;
+    margin: 10px 0 0;
+}
+
+#answer > input[type=submit]:active,
+#answer > input[type=submit]:focus {
+    background: #2ecc71;
+    color: #ecf0f1;
+    border: 0;
+    position: relative;
+    top: 1px;
+    border-bottom: 1px solid;
+}
+
+.question_section > input[type="text"],
+.question_section > span > img {
+  position: relative;
+  right:30px;
+}
+
+
+#answer > input[type="text"] {
+  height:20px;
+}
+
+/*These are eugene's and I will move them later END*/
 
 body {
   display: block;
@@ -15,37 +211,13 @@ body {
   margin-top: 45px;
 }
 
-#header {
-	display: inline;
-  padding: 10px;
-  background-color: black;
-  position:fixed; 
-  top:0px; 
-  margin: auto;
-  width:100%;
-  text-align: center;
-}
 
-#header li{
-	display:inline;
-	padding: 20px;
-}
- 
-#mainpage h1,h2 {
+#mainpage h1 {
   text-align: center;
   padding-top: 50px;
   color: #4d4d4d;
 }
 
-#mainpage h2 {
-  padding-top: 0px;
-}
-
-#header a{
-	color:white;
-	text-decoration: none;
-
-}
 
 .mission {
   margin-right: 5%;
@@ -58,12 +230,10 @@ footer {
   background-color: black;
   color: white;
   width: 100%;
-  margin: auto;
   text-align: center;
 }
 footer p {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin:5px 0 5px;
 }
 
 p.question {
@@ -75,26 +245,10 @@ div.container {
   border: 5px solid black;
 }
 
-.answer {
-  padding-left: 30px; 
-}
-.addAns {
-  padding-left: 30px;
-}
-
-.question_section {
-  padding-top: 15px;
-  padding-bottom: 15px;
-}
 
 input#hidden {
   visibility: hidden;
 }
 
 
-#header li:first-child a {
-  font-weight: bold;
-  float: left;
-  font-size: 40px;
-  padding-right: 300px;
-}
+

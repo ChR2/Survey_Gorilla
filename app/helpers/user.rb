@@ -11,4 +11,21 @@ helpers do
   def logged_in?
     !current_user.nil?
   end
+
+  def completed_surveys
+    choices = current_user.choices
+    @questions = []
+    choices.each do |choice|
+      @questions.push(choice.question)
+    end
+    @questions.uniq
+    @surveys = []
+    @questions.each do |q|
+      @surveys.push(q.survey)
+    end
+    @surveys.uniq
+  end
+
 end
+
+  
