@@ -16,7 +16,9 @@ get '/allsurveys' do
 end
 
 get '/take_survey/:survey_id' do
-  
+  @survey_id = params[:survey_id]
+  @questions = Survey.find(@survey_id).questions
+  erb :take_survey
 end
 
 get '/logout' do
@@ -45,10 +47,16 @@ post '/create_user' do
     session[:user_id] = @user.id
     redirect to '/allsurveys'
   else
-    @error = "You messed up, sucka!"
+    @error = "You messed up, sucka!"end
     erb :create_user
-  end
+  
 end
 
 post '/take_survey/:survey_id' do
+  @survey_id = params[:survey_id]
+  questions = Survey.find(@survey_id).questions
+  questions.each do |question|
+    Response.create(:user_id => current_user.id, :choice_id => params[question.id])
+  end
+  redirect to '/allsurveys'
 end

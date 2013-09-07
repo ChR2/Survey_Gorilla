@@ -1,19 +1,18 @@
 <%= erb :_header %>
 
-<form action='/take_survey/:survey_id' method ="POST">
+<div class="container">
+  <form name="survey" action="/take_survey/<%= @survey_id %>" method ="POST"> 
+      <% @questions.each do |question| %>
+     
+      <p class="question">Question: <%= question.question_text %></p><br>   
 
-    <%= @questions.each do |question| %>
-
-    <p>Question: <%= question.question_text %></p><br>      
-
-      <%= question.choices.each do |choice| %> 
-         <input type="radio" name="choice_id" value="<%= choice.id %>"> 
-           <%= choice.choice_text %>
-         <br>  
+        <% question.choices.each do |choice| %> 
+           <input class="radio" type="radio" name="<%= question.id %>" value="<%= choice.id %>"> 
+             <%= choice.choice_text %>
+           <br>  
+        <% end %>
       <% end %>
-    <% end %>
-  
-  <input type="submit" value="Submit survey">
-
-</form>
-
+    <br>
+    <input type="submit" value="Submit Survey">
+  </form>
+</div>

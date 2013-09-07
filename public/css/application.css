@@ -66,6 +66,10 @@ footer p {
   margin-bottom: 5px;
 }
 
+p.question {
+  margin-bottom: 0px;
+}
+
 div.container {
   margin-top: 100px;
   border: 5px solid black;
@@ -98,4 +102,16 @@ a.survey_links {
 
 a.survey_links:hover {
   color: orange;
+}
+
+input#hidden {
+  visibility: hidden;
+}
+
+
+#header li:first-child a {
+  font-weight: bold;
+  float: left;
+  font-size: 40px;
+  padding-right: 300px;
 }
