@@ -24,7 +24,9 @@ get '/logout' do
   redirect '/'
 end
 
+get '/signup' do 
 
+end
 
 post '/login' do
   @user = User.find_by_username(params[:user][:username])
