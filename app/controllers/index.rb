@@ -28,6 +28,18 @@ get '/signup' do
 
 end
 
+get '/createsurvey' do 
+  erb :create_survey
+end
+
+get '/question/new' do
+  erb :_question_partial, layout: false
+end
+
+get '/answer/new' do
+  erb :_answer, layout: false
+end
+
 post '/login' do
   @user = User.find_by_username(params[:user][:username])
 
@@ -53,4 +65,5 @@ post '/create_user' do
 end
 
 post '/take_survey/:survey_id' do
+
 end

@@ -71,31 +71,14 @@ div.container {
   border: 5px solid black;
 }
 
-input {
-  padding: 5px;
-  border: 2px solid black;
+.answer {
+  padding-left: 30px; 
+}
+.addAns {
+  padding-left: 30px;
 }
 
-ul.survey_list {
-  padding-left: 0px;
-}
-
-li {
-  text-align: center;
-  list-style-type: none;
-  line-height: 30px;
-}
-
-#error {
-  color:red;
-}
-
-a.survey_links {
-  text-decoration: none;
-  font-size: 120%;
-  color: black;
-}
-
-a.survey_links:hover {
-  color: orange;
+.question_section {
+  padding-top: 15px;
+  padding-bottom: 15px;
 }

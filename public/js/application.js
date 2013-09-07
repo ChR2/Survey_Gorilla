@@ -1,7 +1,35 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
-
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+//adds questions
+$('#addVar').on('click', function(){
+  $.get('/question/new', function(response){
+    
+    $('#question').append(response);
+  });
 });
+
+//remove questions   
+$('#question').on('click','.removeVar', function(){
+ $(this).parent().remove();
+});
+
+// adds answers
+$('#question').on('click','#addAns',function(){
+  $.get('/answer/new', function(response){
+    $('.question_section:last #addAns').before(response);
+  })
+});
+
+
+//removes answers
+$('#question').on('click','.removeAns',function(){
+  $(this).parent().remove();
+  if ($('.answer').length < 2){
+    $('.removeAns').hide();
+  }
+});
+
+});
+
+
+
+

@@ -1,0 +1,21 @@
+<%= erb :_header %>
+
+
+<Label>Survey Name: <input type="text" name="surveyname" placeholder='Survey Name'></Label>
+
+<form id="question" method="post">
+
+   <%= erb :_question_partial, layout: false %>
+
+   
+</form>
+<p>
+  <span id="addVar">Add Question</span>
+</p> 
+<input type="submit" value="Submit">
+
+
+
+
+
+
