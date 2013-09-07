@@ -156,10 +156,11 @@ header > ul li:hover ul {
   #answer > input[type="text"]{
      width: 300px;
   }
-  .treat {
-  color: black;
+.treat {
+  color: white;
   text-decoration: none;
 }
+
 .question_section > input[type="text"]:not([value*=" "]):active,
 .question_section > input[type="text"]:not([value*=" "]):focus,
 #answer > input[type=text]:not([value*=" "]):active,

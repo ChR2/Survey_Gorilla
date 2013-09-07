@@ -1,13 +1,8 @@
 <% @questions.each do |question| %>
-
   <p class="question">Question: <%= question.question_text %></p><br>   
-
-  <% question.choices.each do |choice| %> 
-    
+  <% question.choices.each do |choice| %>    
     <input class="radio" type="radio" name="<%= question.id %>" value="<%= choice.id %>"> 
      <%= choice.choice_text %>
-    <br>
-      
+    <br>     
   <% end %>
-
 <% end %>

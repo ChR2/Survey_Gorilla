@@ -1,5 +1,12 @@
 <form name="survey" action="/take_survey/<%= @survey_id %>" method ="POST"> 
-    <%= erb :_fill_out_survey %>
+  <% @questions.each do |question| %>
+    <p class="question">Question: <%= question.question_text %></p><br>   
+    <% question.choices.each do |choice| %>    
+      <input class="radio" type="radio" name="<%= question.id %>" value="<%= choice.id %>"> 
+      <%= choice.choice_text %>
+      <br>     
+    <% end %>
+  <% end %>
   <br>
   <input type="submit" value="Submit Survey">
 </form>
