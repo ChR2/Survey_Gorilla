@@ -1,3 +1,4 @@
+<h1> <%= @survey.name.capitalize %> </h1>
 <form name="survey" action="/take_survey/<%= @survey.id %>" method ="POST"> 
   <% @questions.each do |question| %>
     <p class="question">Question: <%= question.question_text %></p><br>  
