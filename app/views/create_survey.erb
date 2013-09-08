@@ -1,16 +1,11 @@
 <div class='create_survey centerwrap'>
   <form id="question" action='/create_survey' method="POST">
-    <input type="text" name="surveyname" placeholder='Survey Name'>
+    <input type="text" name="surveyname" placeholder='Survey Name' required>
      <%= erb :_question_partial, layout: false %>
-     <p>
-    <span id="addVar">Add Question</span>
-    </p> 
+     <span  id="addVar"><img src="/images/add_question.png" width='35px' height='auto'></span>
     <input type="submit" value="Submit">
   </form>
 </div>
 
-
-
-
-
+<span  id="key"><img src="/images/add_question.png" width='15px' height='auto'> :Question <img src="/images/add.png" width='15px' height='auto'> :Choice</span></span>
 

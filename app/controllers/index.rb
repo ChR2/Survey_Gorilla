@@ -16,9 +16,15 @@ get '/allsurveys' do
   erb :allsurveys
 end
 
+
+get '/treat' do 
+  erb :treat, layout: false
+end
+
 get '/take_survey/:survey_id' do
-  @survey_id = params[:survey_id]
-  @questions = Survey.find(@survey_id).questions
+  @survey = Survey.find(params[:survey_id])
+  @type = @survey.survey_type
+  @questions = @survey.questions
   erb :take_survey
 end
 
@@ -28,19 +34,16 @@ get '/logout' do
 end
 
 get '/createsurvey/:id' do 
-  #1 is radio
-  #2 is multiple
-  #3 is text
-  @type = params[:id]
+  session[:survey_type] = params[:id]
   erb :create_survey
 end
 
 get '/question/new' do
-  erb :_question_partial, layout: false
+  erb :_question_partial,layout: false
 end
 
 get '/answer/new' do
-  erb :_answer, layout: false
+  erb :_answer,layout: false
 end
 
 get '/user/profile' do
@@ -61,10 +64,6 @@ get '/review-survey/:id' do
   @survey = Survey.find(params[:id])
   @questions = @survey.questions
    erb :review_your_survey
-end
-
-get '/treat' do 
-  erb :treat, layout: false
 end
 
 get '/stats/for/:id' do
@@ -99,7 +98,6 @@ post '/create_user' do
   end
 
 post '/take_survey/:survey_id' do
-  # p params[question.id.to_s.to_sym]
   if logged_in?
     @survey_id = params[:survey_id]
     questions = Survey.find(@survey_id).questions
@@ -113,7 +111,7 @@ post '/take_survey/:survey_id' do
 end
 
 post '/create_survey' do 
-@survey = Survey.create(name: params[:surveyname])
+@survey = Survey.create(name: params[:surveyname], survey_type: session[:survey_type])
 current_user.surveys << @survey
 questions = params[:questions]
 @name = ''
@@ -129,7 +127,7 @@ questions.each do |task|
   end 
   end
 end
-
+session[:survey_type].clear
 redirect to "/user/profile"
 
 end

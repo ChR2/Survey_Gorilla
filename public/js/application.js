@@ -1,6 +1,5 @@
 $(document).ready(function() {
-  //adds questions
-    setInterval(function() {
+  setInterval(function() {
   $("#answer input[type=text]").each(function() {
      var element = $(this);
      if (element.val() !== "") {
@@ -14,7 +13,7 @@ $(document).ready(function() {
      }
   });  
   }, 200);
-
+    //adds questions
   $('#addVar').on('click', function(){
     $.get('/question/new', function(response){
       $('#question #addVar').before(response);
@@ -33,12 +32,11 @@ $(document).ready(function() {
     })
   });
 
-
   //removes answers
   $('#question').on('click','.removeAns',function(){
     $(this).parent().remove();
   });
-
+  
 });
 
 

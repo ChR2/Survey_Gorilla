@@ -1,7 +1,8 @@
 <section class="question_section centerwrap">
-  <input type="text" name="questions[]" id="questions" placeholder='Question Name'><span class="removeVar"><img src="/images/trashicon.png" width='43px' height='auto'></span><br>
-    <%= erb :_answer, layout: false %>
-    <%= erb :_answer, layout: false %>
-    <span id="addAns">Add choice</span>
+  <input type="text" name="questions[]" id="questions" placeholder='Question Name' required><span class="removeVar"><img src="/images/close.png" width='43px' height='auto'></span><br>
+  	<% if session[:survey_type] == "1"|| session[:survey_type] == "2" %>
+    	<%= erb :_answer, layout: false %>
+    	<%= erb :_answer, layout: false %>
+    	<span  id="addAns"><img src="/images/add.png" width='29px' height='auto'></span>
+    <% end%>
 </section>
-

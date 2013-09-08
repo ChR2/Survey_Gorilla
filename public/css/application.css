@@ -4,6 +4,11 @@
   padding: 0px 20px 20px 20px;
   border: 1px dotted black;
 }
+
+.treat {
+  color: white;
+  text-decoration: none;
+}
 th {
   text-align: left;
 }
@@ -131,13 +136,8 @@ header > ul li:hover ul {
   margin:80px 0 25px;
 }
 
-.question_section img,
-#answer  img {
-  position: relative;
-  top:6px;
-}
 
-
+#question > input[type="text"],
 .question_section > input[type="text"],
 #answer > input[type="text"]{
     clear: both;
@@ -152,20 +152,14 @@ header > ul li:hover ul {
     color: #34495e;
     font-size: 14px;
 }
-  .question_section > input[type="text"],
-  #answer > input[type="text"]{
-     width: 300px;
-  }
-.treat {
-  color: white;
-  text-decoration: none;
-}
-
+  
+#question > input[type="text"]:not([value*=" "]):active,
+#question > input[type="text"]:not([value*=" "]):focus,
 .question_section > input[type="text"]:not([value*=" "]):active,
 .question_section > input[type="text"]:not([value*=" "]):focus,
 #answer > input[type=text]:not([value*=" "]):active,
 #answer > input[type=text]:not([value*=" "]):focus {
-    /*box-shadow*/
+    box-shadow
     -webkit-box-shadow: inset 8px 0px 0  #515255;
     -moz-box-shadow: inset 8px 0px 0  #515255;
     box-shadow: inset 8px 0px 0  #515255;
@@ -173,7 +167,20 @@ header > ul li:hover ul {
     : x;
 }
 
-#answer > input[type=submit] {
+#question > input[type="text"],
+.question_section > input[type="text"],
+#answer > input[type="text"]{
+     width: 300px;
+}
+
+.question_section img,
+#answer  img {
+  position: relative;
+  top:6px;
+}
+
+
+#question> input[type=submit] {
     background: #27ae60;
     color: #ecf0f1;
     border: 0;
@@ -181,8 +188,8 @@ header > ul li:hover ul {
     margin: 10px 0 0;
 }
 
-#answer > input[type=submit]:active,
-#answer > input[type=submit]:focus {
+#question > input[type=submit]:active,
+#question > input[type=submit]:focus {
     background: #2ecc71;
     color: #ecf0f1;
     border: 0;
@@ -193,6 +200,7 @@ header > ul li:hover ul {
 
 .question_section > input[type="text"],
 .question_section > span > img {
+  font-size: 125%;
   position: relative;
   right:30px;
 }
@@ -201,6 +209,23 @@ header > ul li:hover ul {
 #answer > input[type="text"] {
   height:20px;
 }
+
+#question > input[type="text"] {
+  text-align: center;
+  position: relative;
+  left:15px;
+  bottom: 60px;
+  width:550px;
+  height:50px;
+  font-size: 225%;
+}
+
+
+#question > input[type=submit] {
+  float:right;
+}
+
+ 
 
 /*These are eugene's and I will move them later END*/
 
@@ -211,6 +236,21 @@ body {
   margin-top: 45px;
 }
 
+#addVar {
+  position: relative;
+  top:15px;
+  left:1px;
+}
+
+#key {
+  padding:5px 3px 2px;
+  position: relative;
+  top:19px;
+  right:20px;
+  font-size: 80%;
+  border-right:2px solid black;
+  border-top:2px solid black;
+}
 
 #mainpage h1 {
   text-align: center;
