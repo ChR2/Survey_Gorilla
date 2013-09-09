@@ -1,27 +1,41 @@
 <section id='stats for servey'>
   <h1> <%= @survey.name.upcase %> </h1>
-  <% @total = 0 %>
   <% @questions = @survey.questions %>
   <% @questions.each do |question| %>
-                  <% choices = question.choices %>
-                  <% choices.each do |choice| %>
-                    <% @current = [] %>
-                    <% @current << choice.responses %>
-                    <p>The amount of people that said <%=choice.choice_text%> is:  <%=@current[0].length%></p>
-                      <% @total += @current[0].to_s.length %>
-                      <% @current[0].to_s.length %>
-                  <%end%> 
-          
-        
-          <p>Total Amount of people who answered this question: <%=@total.to_s.length %></p><br>
+  <% @data = [] %>
+  <% @labels = [] %>
+    <% @chart_name = "question#{question.id}" %>
+    <% choices = question.choices %>
+    <% choices.each do |choice| %>
+      <% @labels << choice.choice_text %>
+      <% @current = choice.responses.count %>
+      <p>The amount of people that said <%=choice.choice_text%> is:  <%=@current %></p>
+      <% @data << @current %>
+    <%end%> 
 
-      <% @total = 0 %>
+
+<canvas id="<%= @chart_name %>" width="600" height="200">
+  <script>
+  // console.log(dataArray)
+  var data = {
+          labels : <%= @labels %>,
+          datasets : [{
+            fillColor : "rgba(134,184,177,1)",
+            strokeColor : "rgba(220,220,220,1)",
+            data : <%= @data %>
+          }]
+        }
+        console.log(data)
+        var ctx = document.getElementById("<%= @chart_name %>").getContext("2d");
+        var <%= @chart_name %> = new Chart(ctx).Bar(data);
+        
+  </script>
+</canvas>
+  <p>Total Amount of people who answered this question: <%= question.times_answered %></p><br>
   <%end%> 
 
-  <h2>The total amount of people who completed this survey is <%= (@survey.responses.length / @survey.questions.length) %></h2>
+  <h2>The total amount of people who completed this survey is <%= @survey.times_taken %></h2>
 </section>
-
-
 
 
 

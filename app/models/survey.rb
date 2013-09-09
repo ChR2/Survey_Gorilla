@@ -6,4 +6,7 @@ class Survey < ActiveRecord::Base
  
   validates :name, presence: true
 
+  def times_taken
+    self.responses.count / self.questions.count
+  end
 end
