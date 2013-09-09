@@ -63,7 +63,7 @@ end
 get '/review-survey/:id' do
   @survey = Survey.find(params[:id])
   @questions = @survey.questions
-   erb :review_your_survey
+  erb :review_your_survey
 end
 
 get '/stats/for/:id' do
@@ -93,16 +93,24 @@ post '/create_user' do
     session[:user_id] = @user.id
     redirect to '/user/profile'
   else
-    @error = "You messed up, sucka!"end
+    @error = "You messed up, sucka!"
     erb :create_user
   end
+end
 
 post '/take_survey/:survey_id' do
   if logged_in?
-    @survey_id = params[:survey_id]
-    questions = Survey.find(@survey_id).questions
+    @survey = Survey.find(params[:survey_id])
+    questions = @survey.questions
     questions.each do |question|
-      Response.create(:user_id => current_user.id,:survey_id => @survey_id ,:choice_id => params[question.id.to_s.to_sym])
+      if @survey.survey_type == '3'
+        choice = Choice.find_or_create_by_choice_text(params[question.id.to_s.to_sym])
+        choice.update_attributes(question: question)
+        choice.save
+        Response.create(:user_id => current_user.id,:survey => @survey, :choice_id => choice.id)    
+      else
+        Response.create(:user_id => current_user.id,:survey_id => @survey.id, :choice_id => params[question.id.to_s.to_sym])
+      end
     end
     redirect to '/allsurveys'
   else
@@ -111,24 +119,24 @@ post '/take_survey/:survey_id' do
 end
 
 post '/create_survey' do 
-@survey = Survey.create(name: params[:surveyname], survey_type: session[:survey_type])
-current_user.surveys << @survey
-questions = params[:questions]
-@name = ''
+  @survey = Survey.create(name: params[:surveyname], survey_type: session[:survey_type])
+  current_user.surveys << @survey
+  questions = params[:questions]
+  @name = ''
 
-questions.each do |task|
-  if task.class == String                                                                       
-    @name = Question.create(question_text: task)
-    @survey.questions << @name
-  else
-  answers = task["answers"]
-  answers.each do |answer|
-    @name.choices << Choice.create(choice_text: answer)
-  end 
+  questions.each do |task|
+    if task.class == String                                                                       
+      @name = Question.create(question_text: task)
+      @survey.questions << @name
+    else
+      answers = task["answers"]
+      answers.each do |answer|
+        @name.choices << Choice.create(choice_text: answer)
+      end 
+    end
   end
-end
-session[:survey_type].clear
-redirect to "/user/profile"
+  session[:survey_type].clear
+  redirect to "/user/profile"
 
 end
 
